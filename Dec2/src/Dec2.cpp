@@ -20,9 +20,6 @@ namespace
 
     std::string templ = id.substr(0, pos);
 
-    if (id == "111")
-      bool a = false;
-
     bool valid = false;
     for (size_t checkPos = pos; checkPos < id.size(); checkPos += pos)
     {
@@ -36,69 +33,11 @@ namespace
 
     if (!valid)
     {
-      std::cout << "ID: " << id << " is INVALID" << std::endl;
+      std::cout << "ID TASK 2: " << id << " is INVALID" << std::endl;
       return true;
     }
 
     return repeatingStringsRecursive(id, pos + 1);
-    /*if (id == "824824824")
-    {
-      bool hello = false;
-    }
-
-    if (id_check.size() == 0)
-    {
-      return false;
-    }
-    
-    std::string half1 = "";
-    if (id_check.size() % 2 == 0)
-    {
-      half1 = id_check.substr(0, id_check.size() / 2);
-    }
-    else if (id_check.size() % 3 == 0)
-    {
-      half1 = id_check.substr(0, id_check.size() / 3);
-    }
-    else
-    {
-      return false;
-    }
-
-    size_t elementSize = half1.size();
-    size_t prevIdx = elementSize;
-    std::vector<std::string> elements;
-
-    while (true)
-    {
-      elements.push_back(id.substr(prevIdx, elementSize));
-      if (prevIdx + elementSize >= id.size())
-      {
-        break;
-      }
-      prevIdx += elementSize;
-    }
-
-    bool isInvalid = true;
-    for (const auto& element : elements)
-    {
-      if (element != half1)
-      {
-        isInvalid = false;
-        break;
-      }
-    }
-
-    if (isInvalid)
-    {
-      std::cout << "ID: " << id << " is invalid" << std::endl;
-      return true;
-    }
-
-    if (half1.size() <= 1)
-    {
-      return false;
-    }*/
   }
 
   bool isInvalid(const std::string& id)
@@ -119,16 +58,10 @@ int main()
 
   while (true)
   {
-    // START
-
     std::string range = data.substr(prevcol, nextsize);
-    //std::cout << range << std::endl;
-    
-    // FUNC
 
     size_t bindPos = range.find('-');
     std::array<unsigned long long, 2> IDs;
-
 
     auto a = std::stoull(range.substr(0, bindPos));
     auto b = std::stoull(range.substr(bindPos + 1));
@@ -136,38 +69,30 @@ int main()
     IDs[0] = std::stoull(range.substr(0, bindPos));
     IDs[1] = std::stoull(range.substr(bindPos + 1));
 
-    //for (const std::string& id : IDs)
-    //{
-    //  //std::cout << "ID : " << id << std::endl;
-
-    //  // Ignore if odd number
-    //  if (id.size() % 2 != 0)
-    //  {
-    //    std::cout << "ID : " << id << " is odd. Ignoring..." << std::endl;
-    //    continue;
-    //  }
-
-    //  // Split IDs in half
-    //  //std::string half1 = id.substr(0, id.size() / 2);
-    //  //std::string half2 = id.substr(id.size() / 2);
-
-    //  //std::cout << "ID : " << id << ", first half: " << half1 << ", second half: " << half2 << std::endl;
-
-    //  if (half1 == half2)
-    //  {
-    //    idSum += std::stol(id);
-    //    std::cout << "INVALID ID! Current id sum is: " << std::to_string(idSum) << std::endl;
-    //  }
-    //}
-
-    if (IDs[0] > IDs[1])
+    for (size_t i = 0; i < IDs.size(); i++)
     {
-      std::cout << "Range : " << range << " has lower start value than end value..." << std::endl;
+      const std::string id = std::to_string(IDs[i]);
+
+      // Ignore if odd number
+      if (id.size() % 2 != 0)
+      {
+        std::cout << "ID : " << id << " is odd. Ignoring..." << std::endl;
+        continue;
+      }
+
+      // Split IDs in half
+      std::string half1 = id.substr(0, id.size() / 2);
+      std::string half2 = id.substr(id.size() / 2);
+
+      if (half1 == half2)
+      {
+        idSum += std::stol(id);
+        std::cout << "INVALID ID! Current id sum is: " << std::to_string(idSum) << std::endl;
+      }
     }
 
     for (unsigned long long id = IDs[0]; id <= IDs[1]; id++)
     {
-      // Split IDs in half
       std::string idStr = std::to_string(id);
       if (isInvalid(idStr))
       {
@@ -186,7 +111,7 @@ int main()
       if (half1 == half2)
       {
         idSum += id;
-        //std::cout << "INVALID ID! (" << idStr << ") Current id sum is : " << std::to_string(idSum) << std::endl;
+        std::cout << "ID TASK 1: " << id << " is INVALID" << std::endl;
       }
     }
 
@@ -208,16 +133,6 @@ int main()
     nextsize = nextCol - prevcol;
   }
 
-  std::cout << "ID SUM : " << std::to_string(idSum2) << std::endl;
+  std::cout << "ID SUM 1: " << std::to_string(idSum) << std::endl;
+  std::cout << "ID SUM 2: " << std::to_string(idSum2) << std::endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

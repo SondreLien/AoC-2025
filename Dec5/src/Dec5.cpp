@@ -19,20 +19,6 @@ namespace
     "12-18"
   };
 
-  std::vector<std::string> testRanges2 =
-  {
-    "3-5",
-    "10-14",
-    "10-14",
-    "10-14",
-    "7-14",
-    "11-12",
-    "13-14",
-    "16-20",
-    "12-18",
-    "2-3"
-  };
-
   std::vector<std::string> testIngredients =
   {
     "1",
@@ -98,7 +84,7 @@ std::vector<std::pair<unsigned long long, unsigned long long>> recursiveMergeRan
       }
       else if (validIdRange_b.first > currentRange.first && validIdRange_b.second < currentRange.second)
       {
-        std::cout << "\DISCARDED range " << currentRange.first << " to " << currentRange.second << " with " << validIdRange_b.first << " to " << validIdRange_b.second << std::endl;
+        std::cout << "\tDISCARDED range " << currentRange.first << " to " << currentRange.second << " with " << validIdRange_b.first << " to " << validIdRange_b.second << std::endl;
         validIdRange_b = std::make_pair(0, 0);
       }
     }
@@ -122,7 +108,6 @@ int main()
     const auto& ingredients = INGREDIENTS_1;
 
     std::vector<std::pair<unsigned long long, unsigned long long>> validIdRanges;
-    // std::unordered_set<long> allValidIngredients;
 
     for (const auto& range : ranges)
     {
@@ -130,14 +115,7 @@ int main()
       unsigned long long first = std::stoull(range.substr(0, bindPos));
       unsigned long long second = std::stoull(range.substr(bindPos + 1));
 
-      //std::cout << "Valid range " << std::to_string(first) << " to " << std::to_string(second) << std::endl;
-
       validIdRanges.push_back(std::make_pair(first, second));
-
-      //for (unsigned long long i = first; i < second; i++)
-      //{
-      //  allValidIngredients.insert(i);
-      //}
     }
 
     // Find overlapping ranges
@@ -153,7 +131,6 @@ int main()
       {
         if (ingredientVal >= range.first && ingredientVal <= range.second)
         {
-          // std::cout << "Valid ingredient " << ingredient << std::endl;
           validIngredients.insert(ingredientVal);
         }
       }
@@ -168,14 +145,3 @@ int main()
     std::cout << "Total valid ingredients (PART1) : " << std::to_string(validIngredients.size()) << std::endl;
     std::cout << "Total valid ingredients (PART2) : " << std::to_string(totalValidIngredients) << std::endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

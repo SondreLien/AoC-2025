@@ -23,7 +23,7 @@ namespace
     "@.@.@@@.@."
   };
 
-  void recursiveRemovePaper(const std::vector<std::string> storage, unsigned long& removedPaper)
+  void recursiveRemovePaper(const std::vector<std::string> storage, unsigned long& removedPaper, const bool runOnce)
   {
     unsigned long initRemovedPaper = removedPaper;
     std::vector<std::string> modifiedStorage = storage;
@@ -127,12 +127,12 @@ namespace
       }
     }
     
-    if (removedPaper == initRemovedPaper)
+    if (removedPaper == initRemovedPaper || runOnce)
     {
       return;
     }
 
-    recursiveRemovePaper(modifiedStorage, removedPaper);
+    recursiveRemovePaper(modifiedStorage, removedPaper, runOnce);
   }
 }
 
@@ -140,19 +140,11 @@ int main()
 {
     const auto& data = DATA_1;
 
-    unsigned long removedTp = 0;
-    recursiveRemovePaper(data, removedTp);
+    unsigned long removedTp1 = 0;
+    unsigned long removedTp2 = 0;
+    recursiveRemovePaper(data, removedTp1, true);
+    recursiveRemovePaper(data, removedTp2, false);
 
-    std::cout << "Total removed toilet paper: " << std::to_string(removedTp) << std::endl;
+    std::cout << "Task 1: Total removed toilet paper: " << std::to_string(removedTp1) << std::endl;
+    std::cout << "Task 2: Total removed toilet paper: " << std::to_string(removedTp2) << std::endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

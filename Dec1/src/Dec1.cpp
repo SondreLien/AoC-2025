@@ -6,9 +6,6 @@
 
 namespace
 {
-  const long MIN_1 = 0;
-  const long MAX_1 = 99;
-
   const std::vector<std::string> Testdata{
     "L68",
     "L30",
@@ -101,27 +98,6 @@ int main()
       turnRightRecursive(_currentPoint, passwordInc2, ticks);
     }
 
-    //while (_currentPoint < MIN_1)
-    //{
-    //  _currentPoint = MAX_1 + 1 + _currentPoint;
-    //  ++passwordInc2;
-
-    //  if (_currentPoint == 0)
-    //  {
-    //    passwordInc2--;
-    //  }
-    //}
-    //while (_currentPoint > MAX_1)
-    //{
-    //  _currentPoint = _currentPoint - (MAX_1 + 1);
-    //  ++passwordInc2;
-
-    //  if (_currentPoint == 0)
-    //  {
-    //    passwordInc2--;
-    //  }
-    //}
-
     currentPoint = _currentPoint;
 
     std::cout << "CURRENT: " << std::to_string(currentPoint) << std::endl;
@@ -129,7 +105,6 @@ int main()
     if (currentPoint == 0)
     {
       ++passwordInc;
-      //std::cout << "PASSWORD INCREMENTED!" << std::endl;
     }
   }
 
@@ -137,14 +112,3 @@ int main()
   std::cout << "PASSWORD 2: " << std::to_string(passwordInc2) << std::endl;
 
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
