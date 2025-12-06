@@ -14,6 +14,7 @@ add_subdirectory(Dec2)
 add_subdirectory(Dec3)
 add_subdirectory(Dec4)
 add_subdirectory(Dec5)
+add_subdirectory(Dec6)
 
 target_include_directories(Dec3 
     PUBLIC ${CMAKE_SOURCE_DIR}/ThirdParty/boost/libs/multiprecision/include
